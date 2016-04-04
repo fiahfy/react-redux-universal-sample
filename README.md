@@ -1,6 +1,7 @@
 react-redux-universal-sample
 ===========
-React.js Universal Sample
+Universal Todo Sample for React.js and Redux  
+Inspire <https://github.com/erikras/react-redux-universal-hot-example>
 
 * React 0.14.8
 * Redux 3.3.1
