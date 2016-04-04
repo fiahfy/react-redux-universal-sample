@@ -10,7 +10,10 @@ import Html from '../../client/containers/html'
 import Root from '../../client/containers/root'
 
 export default async function (ctx) {
-  await new Promise(resolve => {
+    global.navigator = {
+      userAgent: ctx.headers['user-agent']
+    }
+    await new Promise(resolve => {
     const store = configureStore(history)
     match({history, routes, location: ctx.originalUrl}, (error, redirectLocation, renderProps) => {
       if (error) {

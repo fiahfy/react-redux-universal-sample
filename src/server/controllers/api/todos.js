@@ -1,7 +1,7 @@
 export default async function (ctx) {
   global.todos = global.todos || []
 
-  const method = ctx.query.__method
+  const method = ctx.request.method
   switch (method) {
   case 'GET':
     ctx.body = global.todos
@@ -10,7 +10,7 @@ export default async function (ctx) {
     const id = (new Date).getTime()
     global.todos.push({
       id,
-      text: ctx.query.text
+      text: ctx.request.body.text
     })
     ctx.status = 201
     ctx.body = {id}
@@ -18,8 +18,8 @@ export default async function (ctx) {
   }
   case 'PUT':
     global.todos = global.todos.map(todo => {
-      if (todo.id == ctx.query.id) {
-        todo.text = ctx.query.text
+      if (todo.id == ctx.params.id) {
+        todo.text = ctx.request.body.text
       }
       return todo
     })
@@ -27,7 +27,7 @@ export default async function (ctx) {
     break
   case 'DELETE':
     global.todos = global.todos.filter(todo => {
-      return todo.id != ctx.query.id
+      return todo.id != ctx.params.id
     })
     ctx.status = 204
     break

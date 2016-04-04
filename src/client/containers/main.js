@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {asyncConnect} from 'redux-async-connect'
+import {List, ListItem, TextField, IconButton} from 'material-ui'
+import {NavigationClose} from 'material-ui/lib/svg-icons'
 import * as ActionCreators from '../actions'
 
 function mapStateToProps(state) {
@@ -24,12 +26,20 @@ export default class Main extends Component {
     todos:   PropTypes.arrayOf(PropTypes.object),
     actions: PropTypes.object
   };
-  handleSubmit(e) {
-    e.preventDefault()
-    this.props.actions.createTodo({text: this.refs.text.value})
-    this.refs.text.value = ''
+  state = {
+    text: ''
+  };
+  hancleTextChange(e) {
+    this.setState({text: e.target.value})
   }
-  handleClickDeleteButton(id) {
+  handleTextSubmit(e) {
+    if (e.keyCode != 13 || !e.target.value) {
+      return
+    }
+    this.props.actions.createTodo({text: e.target.value})
+    this.setState({text: ''})
+  }
+  handleDeleteClick(id) {
     this.props.actions.deleteTodo({id})
   }
   render() {
@@ -37,23 +47,25 @@ export default class Main extends Component {
 
     const todoNodes = todos.map((todo, index) => {
       return (
-        <div key={index}>
-          {todo.text}
-          <input type="button" value="x" onClick={() => this.handleClickDeleteButton(todo.id)} />
-        </div>
+        <ListItem key={index} primaryText={todo.text} rightIconButton={
+          <IconButton onClick={() => this.handleDeleteClick(todo.id)}>
+            <NavigationClose />
+          </IconButton>
+        }
+        />
       )
     })
 
     return (
       <div>
-        <div>
-          <form onSubmit={::this.handleSubmit} action="/">
-            <input type="text" ref="text" />
-          </form>
-        </div>
-        <div>
+        <TextField value={this.state.text} hintText="Input..."
+          fullWidth={true}
+          onChange={::this.hancleTextChange}
+          onKeyDown={::this.handleTextSubmit}
+        />
+        <List>
           {todoNodes}
-        </div>
+        </List>
       </div>
     )
   }

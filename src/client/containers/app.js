@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
+import {AppBar} from 'material-ui'
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <header>Header</header>
+        <AppBar
+          title="React Redux Universal Sample"
+          showMenuIconButton={false}
+        />
         {this.props.children}
-        <footer>Footer</footer>
       </div>
     )
   }

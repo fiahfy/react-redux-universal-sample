@@ -12,14 +12,14 @@
     "type": "git",
     "url": "https://github.com/fiahfy/react-redux-universal-sample"
   },
+  "license": "MIT",
   "engines": {
     "node": ">=4.2.2"
   },
-  "main": "server.js",
+  "main": "bundle.js",
   "scripts": {
     "install": "npm run build",
-    "start": "nodemon -V server.js -- --optimize_for_size --max_old_space_size=512 --gc_interval=100",
-    "start:dev": "npm run watch & npm run nodemon",
+    "start": "npm run watch & npm run nodemon",
     "start:hot": "npm run hot:client & npm run hot:server",
     "nodemon": "nodemon -V -w bundle.js bundle.js",
     "hot:client": "webpack-dev-server --config webpack/client.hot.babel.js",
@@ -51,10 +51,12 @@
     "isomorphic-fetch": "2.2.1",
     "json-loader": "0.5.4",
     "koa": "2.0.0-alpha.3",
+    "koa-bodyparser": "3.0.0",
     "koa-convert": "1.2.0",
     "koa-router": "7.0.1",
     "koa-static": "2.0.0",
     "markdown-loader": "0.1.7",
+    "material-ui": "0.15.0-alpha.2",
     "node-loader": "0.5.0",
     "react": "0.14.8",
     "react-dom": "0.14.8",
