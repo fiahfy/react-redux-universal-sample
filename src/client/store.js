@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
-import {routeReducer, syncHistory} from 'react-router-redux'
-import {reducer as reduxAsyncConnect} from 'redux-async-connect'
+import {routerMiddleware, routerReducer} from 'react-router-redux'
+import {reducer as reduxAsyncConnect} from 'redux-connect'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment'
@@ -17,7 +17,7 @@ export function configureStore(history, initialState = {}) {
     reduxLoggerMiddleware = createLogger()
   }
 
-  const reduxRouterMiddleware = syncHistory(history)
+  const reduxRouterMiddleware = routerMiddleware(history)
 
   const finalCreateStore = compose(
     applyMiddleware(thunk),
@@ -27,12 +27,11 @@ export function configureStore(history, initialState = {}) {
   )(createStore)
 
   const store = finalCreateStore(combineReducers({
-    routing: routeReducer,
+    routing: routerReducer,
     reduxAsyncConnect,
     ...reducers
   }), initialState)
 
-  reduxRouterMiddleware.listenForReplays(store)
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

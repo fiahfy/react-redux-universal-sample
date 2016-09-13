@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {asyncConnect} from 'redux-async-connect'
+import {asyncConnect} from 'redux-connect'
 import {List, ListItem, TextField, IconButton} from 'material-ui'
-import {NavigationClose} from 'material-ui/lib/svg-icons'
+import {NavigationClose} from 'material-ui/svg-icons'
 import * as ActionCreators from '../actions'
 
 function mapStateToProps(state) {

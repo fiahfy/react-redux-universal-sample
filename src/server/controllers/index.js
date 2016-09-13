@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import {match} from 'react-router'
-import {loadOnServer} from 'redux-async-connect'
+import {syncHistoryWithStore} from 'react-router-redux'
+import {loadOnServer} from 'redux-connect'
 import serialize from 'serialize-javascript'
-import history from '../../client/history'
+import baseHistory from '../../client/history'
 import routes from '../../client/routes'
 import {configureStore} from '../../client/store'
 import Html from '../../client/containers/html'
@@ -14,7 +15,8 @@ export default async function (ctx) {
     userAgent: ctx.headers['user-agent']
   }
   await new Promise(resolve => {
-    const store = configureStore(history)
+    const store = configureStore(baseHistory)
+    const history = syncHistoryWithStore(baseHistory, store);
     match({history, routes, location: ctx.originalUrl}, (error, redirectLocation, renderProps) => {
       if (error) {
         ctx.status = 500

@@ -1,18 +1,20 @@
 import React, {Component, PropTypes} from 'react'
 import {Router} from 'react-router'
 import {Provider} from 'react-redux'
-import {ReduxAsyncConnect} from 'redux-async-connect'
+import {ReduxAsyncConnect} from 'redux-connect'
+import {MuiThemeProvider} from 'material-ui'
+
 import DevTools from './dev-tools'
-import history from '../history'
 import routes from '../routes'
 
 export default class Root extends Component {
   static propTypes = {
     store:       PropTypes.object.isRequired,
+    history:     PropTypes.object,
     renderProps: PropTypes.object
   };
   render() {
-    const {store, renderProps} = this.props
+    const {store, history, renderProps} = this.props
 
     const hasDevTools = false
     const devTools = hasDevTools ? <DevTools /> : null
@@ -37,7 +39,9 @@ export default class Root extends Component {
 
     return (
       <Provider store={store} key="provider">
-        {component}
+        <MuiThemeProvider>
+          {component}
+        </MuiThemeProvider>
       </Provider>
     )
   }

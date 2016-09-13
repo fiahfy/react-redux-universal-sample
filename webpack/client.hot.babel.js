@@ -6,7 +6,7 @@ const config = {
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server'
   ]),
-  plugins: baseConfig.plugins.concat([
+  plugins: [].concat([
     new webpack.HotModuleReplacementPlugin()
   ]),
   devServer: {

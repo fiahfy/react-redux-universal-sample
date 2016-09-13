@@ -5,7 +5,7 @@ const config = {
   entry: [baseConfig.entry].concat([
     'webpack/hot/poll?1000'
   ]),
-  plugins: baseConfig.plugins.concat([
+  plugins: [].concat([
     new webpack.HotModuleReplacementPlugin()
   ])
 }
