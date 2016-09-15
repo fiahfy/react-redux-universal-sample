@@ -30,7 +30,8 @@
     "build": "webpack --config webpack.config.babel.js",
     "build:client": "webpack --config webpack.config.client.babel.js",
     "build:server": "webpack --config webpack.config.server.babel.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "npm run lint"
   },
   "dependencies": {
     "babel-loader": "6.2.5",
@@ -67,12 +68,11 @@
   "devDependencies": {
     "babel-eslint": "6.1.2",
     "babel-preset-react-hmre": "1.1.1",
-    "eslint": "3.4.0",
+    "eslint": "3.5.0",
     "eslint-config-airbnb": "11.1.0",
-    "eslint-plugin-babel": "3.3.0",
     "eslint-plugin-import": "1.15.0",
     "eslint-plugin-jsx-a11y": "2.2.2",
-    "eslint-plugin-react": "6.2.0",
+    "eslint-plugin-react": "6.2.2",
     "nodemon": "1.10.2",
     "webpack-dev-server": "1.15.1"
   }
