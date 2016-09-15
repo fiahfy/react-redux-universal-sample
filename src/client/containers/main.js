@@ -58,7 +58,7 @@ export default class Main extends Component {
 
     return (
       <div>
-        <TextField value={this.state.text} hintText="Input..."
+        <TextField id="todo" value={this.state.text} hintText="Input..."
           fullWidth={true}
           onChange={::this.hancleTextChange}
           onKeyDown={::this.handleTextSubmit}

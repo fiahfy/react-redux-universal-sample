@@ -35,7 +35,7 @@ export function createTodo(todo) {
       },
       body: JSON.stringify(todo)
     })
-      .then(() => fetch(`${apiBaseURL}/api/todos/?__method=GET`))
+      .then(() => fetch(`${apiBaseURL}/api/todos/`))
       .then(response => response.json())
       .then(json => dispatch({
         type:  RECEIVE_TODOS,
@@ -53,7 +53,7 @@ export function deleteTodo(todo) {
     return fetch(`${apiBaseURL}/api/todos/${todo.id}/`, {
       method: 'DELETE'
     })
-      .then(() => fetch(`${apiBaseURL}/api/todos/?__method=GET`))
+      .then(() => fetch(`${apiBaseURL}/api/todos/`))
       .then(response => response.json())
       .then(json => dispatch({
         type:  RECEIVE_TODOS,
