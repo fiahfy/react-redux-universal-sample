@@ -1,8 +1,8 @@
 import webpack from 'webpack'
-import baseConfig from './server.babel'
+import serverConfig from './webpack.config.server.babel'
 
 const config = {
-  entry: [baseConfig.entry].concat([
+  entry: [serverConfig.entry].concat([
     'webpack/hot/poll?1000'
   ]),
   plugins: [].concat([
@@ -10,4 +10,4 @@ const config = {
   ])
 }
 
-module.exports = Object.assign({}, baseConfig, config)
+export default Object.assign({}, serverConfig, config)

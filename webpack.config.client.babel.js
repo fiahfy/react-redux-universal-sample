@@ -1,4 +1,4 @@
-import baseConfig from './base.babel'
+import baseConfig from './webpack.config.base.babel'
 
 const config = {
   target: 'web',

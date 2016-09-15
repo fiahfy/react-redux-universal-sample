@@ -1,5 +1,5 @@
 import fs from 'fs'
-import baseConfig from './base.babel'
+import baseConfig from './webpack.config.base.babel'
 
 const nodeModules = fs.readdirSync('node_modules')
   .filter(dir => '.bin' !== dir)

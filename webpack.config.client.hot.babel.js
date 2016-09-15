@@ -1,8 +1,8 @@
 import webpack from 'webpack'
-import baseConfig from './client.babel'
+import clientConfig from './webpack.config.client.babel'
 
 const config = {
-  entry: [baseConfig.entry].concat([
+  entry: [clientConfig.entry].concat([
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server'
   ]),
@@ -11,11 +11,11 @@ const config = {
   ]),
   devServer: {
     proxy: [{
-      path: /^.*$/,
+      path: '/',
       target: 'http://localhost:3000',
       secure: false
     }]
   }
 }
 
-module.exports = Object.assign({}, baseConfig, config)
+export default Object.assign({}, clientConfig, config)
