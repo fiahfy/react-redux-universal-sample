@@ -1,4 +1,4 @@
-import {browserHistory, createMemoryHistory} from 'react-router'
+import { browserHistory, createMemoryHistory } from 'react-router'
 import withScroll from 'scroll-behavior'
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment'
 

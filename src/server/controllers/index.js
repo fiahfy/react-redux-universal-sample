@@ -1,23 +1,23 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import {match} from 'react-router'
-import {syncHistoryWithStore} from 'react-router-redux'
-import {loadOnServer} from 'redux-connect'
+import { match } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { loadOnServer } from 'redux-connect'
 import serialize from 'serialize-javascript'
 import baseHistory from '../../client/history'
 import routes from '../../client/routes'
-import {configureStore} from '../../client/store'
+import { configureStore } from '../../client/store'
 import Html from '../../client/containers/html'
 import Root from '../../client/containers/root'
 
 export default async function (ctx) {
   global.navigator = {
-    userAgent: ctx.headers['user-agent']
+    userAgent: ctx.headers['user-agent'],
   }
-  await new Promise(resolve => {
+  await new Promise((resolve) => {
     const store = configureStore(baseHistory)
-    const history = syncHistoryWithStore(baseHistory, store);
-    match({history, routes, location: ctx.originalUrl}, (error, redirectLocation, renderProps) => {
+    const history = syncHistoryWithStore(baseHistory, store)
+    match({ history, routes, location: ctx.originalUrl }, (error, redirectLocation, renderProps) => {
       if (error) {
         ctx.status = 500
         ctx.body = error.message
@@ -34,7 +34,7 @@ export default async function (ctx) {
         return
       }
 
-      loadOnServer({...renderProps, store}).then(() => {
+      loadOnServer({ ...renderProps, store }).then(() => {
         try {
           const initialState = serialize(store.getState())
 

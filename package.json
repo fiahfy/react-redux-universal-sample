@@ -31,6 +31,7 @@
     "build:client": "webpack --config webpack.config.client.babel.js",
     "build:server": "webpack --config webpack.config.server.babel.js",
     "lint": "eslint src",
+    "autofix": "eslint src --fix",
     "test": "npm run lint"
   },
   "dependencies": {

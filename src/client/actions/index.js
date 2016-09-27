@@ -11,53 +11,53 @@ if (!ExecutionEnvironment.canUseDOM) {
 }
 
 export function fetchTodos() {
-  return dispatch => {
+  return (dispatch) => {
     return fetch(`${apiBaseURL}/api/todos/`)
       .then(response => response.json())
       .then(json => dispatch({
-        type:  RECEIVE_TODOS,
-        todos: json
+        type: RECEIVE_TODOS,
+        todos: json,
       }))
   }
 }
 
 export function createTodo(todo) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: CREATE_TODO,
-      todo: todo
+      todo,
     })
     return fetch(`${apiBaseURL}/api/todos/`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(todo)
+      body: JSON.stringify(todo),
     })
       .then(() => fetch(`${apiBaseURL}/api/todos/`))
       .then(response => response.json())
       .then(json => dispatch({
-        type:  RECEIVE_TODOS,
-        todos: json
+        type: RECEIVE_TODOS,
+        todos: json,
       }))
   }
 }
 
 export function deleteTodo(todo) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: DELETE_TODO,
-      todo: todo
+      todo,
     })
     return fetch(`${apiBaseURL}/api/todos/${todo.id}/`, {
-      method: 'DELETE'
+      method: 'DELETE',
     })
       .then(() => fetch(`${apiBaseURL}/api/todos/`))
       .then(response => response.json())
       .then(json => dispatch({
-        type:  RECEIVE_TODOS,
-        todos: json
+        type: RECEIVE_TODOS,
+        todos: json,
       }))
   }
 }
