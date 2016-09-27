@@ -3,11 +3,11 @@ import serverConfig from './webpack.config.server.babel'
 
 const config = {
   entry: [serverConfig.entry].concat([
-    'webpack/hot/poll?1000'
+    'webpack/hot/poll?1000',
   ]),
   plugins: [].concat([
-    new webpack.HotModuleReplacementPlugin()
-  ])
+    new webpack.HotModuleReplacementPlugin(),
+  ]),
 }
 
 export default Object.assign({}, serverConfig, config)

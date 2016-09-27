@@ -1,6 +1,6 @@
 {
   "name": "react-redux-universal-sample",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "author": {
     "name": "fiahfy",
@@ -14,6 +14,7 @@
   },
   "license": "MIT",
   "engines": {
+    "npm": ">=3.10.0",
     "node": ">=6.5.0"
   },
   "main": "bundle.js",

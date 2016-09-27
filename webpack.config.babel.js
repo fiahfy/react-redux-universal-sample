@@ -4,5 +4,5 @@ import serverConfig from './webpack.config.server.babel'
 
 export default [
   clientConfig,
-  serverConfig
+  serverConfig,
 ]

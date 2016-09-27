@@ -6,8 +6,8 @@ const config = {
   output: {
     path: './public/assets/',
     publicPath: '/assets/',
-    filename: 'js/bundle.js'
-  }
+    filename: 'js/bundle.js',
+  },
 }
 
 export default Object.assign({}, baseConfig, config)

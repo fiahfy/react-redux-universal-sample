@@ -9,9 +9,9 @@ export default {
         loader: 'babel',
         query: {
           plugins: ['transform-decorators-legacy'],
-          presets: ['es2015', 'stage-0', 'react']
-        }
-      }
-    ]
-  }
+          presets: ['es2015', 'stage-0', 'react'],
+        },
+      },
+    ],
+  },
 }
