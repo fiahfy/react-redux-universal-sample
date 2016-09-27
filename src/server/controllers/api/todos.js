@@ -1,4 +1,4 @@
-export default async function (ctx) {
+export default function (ctx) {
   global.todos = global.todos || []
 
   const method = ctx.request.method
@@ -18,7 +18,7 @@ export default async function (ctx) {
     }
     case 'PUT':
       global.todos = global.todos.map((todo) => {
-        if (todo.id == ctx.params.id) {
+        if (todo.id === ctx.params.id) {
           todo.text = ctx.request.body.text
         }
         return todo
@@ -26,10 +26,11 @@ export default async function (ctx) {
       ctx.status = 204
       break
     case 'DELETE':
-      global.todos = global.todos.filter((todo) => {
-        return todo.id != ctx.params.id
-      })
+      global.todos = global.todos.filter(todo => todo.id !== ctx.params.id)
       ctx.status = 204
+      break
+    default:
+      ctx.status = 405
       break
   }
 }

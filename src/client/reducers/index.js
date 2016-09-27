@@ -13,9 +13,7 @@ function todos(state = [], action) {
     }
     case ActionTypes.DELETE_TODO: {
       const { todo } = action
-      state = state.filter((item) => {
-        return item.id != todo.id
-      })
+      state = state.filter(item => item.id !== todo.id)
       return state
     }
     default:

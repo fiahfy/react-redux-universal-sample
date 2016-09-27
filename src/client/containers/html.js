@@ -11,8 +11,9 @@ export default class Html extends Component {
 
     const head = Helmet.rewind()
 
+    /* eslint-disable react/no-danger */
     return (
-      <html>
+      <html lang="en">
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}
@@ -29,5 +30,6 @@ export default class Html extends Component {
         </body>
       </html>
     )
+    /* eslint-enable */
   }
 }

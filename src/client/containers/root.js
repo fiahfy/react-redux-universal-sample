@@ -21,9 +21,10 @@ export default class Root extends Component {
 
     let component = (
       <div>
-        <Router render={props =>
-          <ReduxAsyncConnect {...props} filter={item => !item.deferred} />
-        } history={history}
+        <Router
+          render={props =>
+            <ReduxAsyncConnect {...props} filter={item => !item.deferred} />
+          } history={history}
         >
           {routes}
         </Router>

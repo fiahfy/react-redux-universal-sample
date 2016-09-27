@@ -16,9 +16,7 @@ function mapDispatchToProps(dispatch) {
 
 @asyncConnect([{
   deferred: true,
-  promise: ({ store: { dispatch } }) => {
-    return ActionCreators.fetchTodos()(dispatch)
-  },
+  promise: ({ store: { dispatch } }) => ActionCreators.fetchTodos()(dispatch),
 }])
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Main extends Component {
@@ -33,7 +31,7 @@ export default class Main extends Component {
     this.setState({ text: e.target.value })
   }
   handleTextSubmit(e) {
-    if (e.keyCode != 13 || !e.target.value) {
+    if (e.keyCode !== 13 || !e.target.value) {
       return
     }
     this.props.actions.createTodo({ text: e.target.value })
@@ -45,19 +43,26 @@ export default class Main extends Component {
   render() {
     const { todos } = this.props
 
-    const todoNodes = todos.map((todo, index) => {
-      return (
-        <ListItem key={index} primaryText={todo.text} rightIconButton={
-          <IconButton onClick={() => this.handleDeleteClick(todo.id)}>
+    const todoNodes = todos.map((todo, index) => (
+      <ListItem
+        key={index}
+        primaryText={todo.text}
+        rightIconButton={
+          <IconButton
+            onClick={() => this.handleDeleteClick(todo.id)}
+          >
             <NavigationClose />
           </IconButton>
-        } />
-      )
-    })
+        }
+      />
+    ))
 
     return (
       <div>
-        <TextField id="todo" value={this.state.text} hintText="Input..."
+        <TextField
+          id="todo"
+          value={this.state.text}
+          hintText="Input..."
           fullWidth
           onChange={::this.hancleTextChange}
           onKeyDown={::this.handleTextSubmit}

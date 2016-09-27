@@ -3,10 +3,14 @@
   "parser": "babel-eslint",
   "rules": {
     "no-use-before-define": 0,
+    "no-param-reassign": 0,
+    "no-shadow": 0,
     "semi": [2, "never"],
-    "react/require-extension": 0,
-    "react/prefer-stateless-function": 0,
     'generator-star-spacing': 0,
-    'babel/generator-star-spacing': [2, { 'before': false, 'after': true }]
+    "react/require-extension": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-no-bind": 0,
+    "react/prefer-stateless-function": 0
   }
 }

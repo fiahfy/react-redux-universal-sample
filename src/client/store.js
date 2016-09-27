@@ -11,7 +11,7 @@ const voidMiddleware = () => next => (action) => {
   next(action)
 }
 
-export function configureStore(history, initialState = {}) {
+export default function configureStore(history, initialState = {}) {
   let reduxLoggerMiddleware = voidMiddleware
   if (ExecutionEnvironment.canUseDOM) {
     reduxLoggerMiddleware = createLogger()
@@ -35,7 +35,7 @@ export function configureStore(history, initialState = {}) {
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default
+      const nextRootReducer = require('./reducers').default // eslint-disable-line
       store.replaceReducer(nextRootReducer)
     })
   }
