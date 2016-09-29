@@ -1,4 +1,4 @@
-import baseConfig from './base.babel'
+import baseConfig from './webpack.config.base.babel'
 
 const config = {
   target: 'web',
@@ -6,8 +6,8 @@ const config = {
   output: {
     path: './public/assets/',
     publicPath: '/assets/',
-    filename: 'js/bundle.js'
-  }
+    filename: 'js/bundle.js',
+  },
 }
 
 export default Object.assign({}, baseConfig, config)

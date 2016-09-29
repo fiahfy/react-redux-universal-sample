@@ -1,8 +1,8 @@
 import fs from 'fs'
-import baseConfig from './base.babel'
+import baseConfig from './webpack.config.base.babel'
 
 const nodeModules = fs.readdirSync('node_modules')
-  .filter(dir => '.bin' !== dir)
+  .filter(dir => dir !== '.bin')
 
 const config = {
   target: 'node',
@@ -11,9 +11,9 @@ const config = {
     path: './public/assets/',
     publicPath: '/assets/',
     filename: '../../bundle.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
-  externals: nodeModules
+  externals: nodeModules,
 }
 
 export default Object.assign({}, baseConfig, config)

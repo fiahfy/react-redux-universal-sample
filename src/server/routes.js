@@ -10,7 +10,7 @@ router.get('/api/todos/', todosController)
 router.post('/api/todos/', todosController)
 router.put('/api/todos/:id/', todosController)
 router.delete('/api/todos/:id/', todosController)
-router.get('/assets/*', ctx => {
+router.get('/assets/*', (ctx) => {
   ctx.status = 404
 })
 router.get('*', rootController)

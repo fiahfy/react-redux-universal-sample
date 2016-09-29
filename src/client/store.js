@@ -1,23 +1,23 @@
-import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
-import {routeReducer, syncHistory} from 'react-router-redux'
-import {reducer as reduxAsyncConnect} from 'redux-async-connect'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import { routerMiddleware, routerReducer } from 'react-router-redux'
+import { reducer as reduxAsyncConnect } from 'redux-connect'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment'
 import reducers from './reducers'
 import DevTools from './containers/dev-tools'
 
-const voidMiddleware = () => next => action => {
+const voidMiddleware = () => next => (action) => {
   next(action)
 }
 
-export function configureStore(history, initialState = {}) {
+export default function configureStore(history, initialState = {}) {
   let reduxLoggerMiddleware = voidMiddleware
   if (ExecutionEnvironment.canUseDOM) {
     reduxLoggerMiddleware = createLogger()
   }
 
-  const reduxRouterMiddleware = syncHistory(history)
+  const reduxRouterMiddleware = routerMiddleware(history)
 
   const finalCreateStore = compose(
     applyMiddleware(thunk),
@@ -27,16 +27,15 @@ export function configureStore(history, initialState = {}) {
   )(createStore)
 
   const store = finalCreateStore(combineReducers({
-    routing: routeReducer,
+    routing: routerReducer,
     reduxAsyncConnect,
-    ...reducers
+    ...reducers,
   }), initialState)
 
-  reduxRouterMiddleware.listenForReplays(store)
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default
+      const nextRootReducer = require('./reducers').default // eslint-disable-line
       store.replaceReducer(nextRootReducer)
     })
   }
