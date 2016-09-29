@@ -1,5 +1,6 @@
-react-redux-universal-sample
-===========
+# react-redux-universal-sample
+[![Build Status](https://travis-ci.org/fiahfy/react-redux-universal-sample.svg?branch=develop)](https://travis-ci.org/fiahfy/react-redux-universal-sample)
+
 Universal Todo Sample for React.js and Redux  
 Inspire <https://github.com/erikras/react-redux-universal-hot-example>
 
@@ -8,8 +9,7 @@ Inspire <https://github.com/erikras/react-redux-universal-hot-example>
 * Koa 2.0.0
 * Material-UI 0.15.4
 
-Getting started
------
+## Getting started
 ```
 $ git clone https://github.com/fiahfy/react-redux-universal-sample.git
 $ cd react-redux-universal-sample
