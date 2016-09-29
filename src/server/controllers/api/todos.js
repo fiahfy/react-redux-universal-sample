@@ -25,10 +25,12 @@ export default function (ctx) {
       })
       ctx.status = 204
       break
-    case 'DELETE':
-      global.todos = global.todos.filter(todo => todo.id !== ctx.params.id)
+    case 'DELETE': {
+      const id = +ctx.params.id
+      global.todos = global.todos.filter(todo => todo.id !== id)
       ctx.status = 204
       break
+    }
     default:
       ctx.status = 405
       break
