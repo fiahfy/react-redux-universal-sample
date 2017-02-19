@@ -21,8 +21,8 @@ function mapDispatchToProps(dispatch) {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Main extends Component {
   static propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.object),
-    actions: PropTypes.object,
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    actions: PropTypes.object.isRequired,
   };
   state = {
     text: '',
@@ -43,9 +43,9 @@ export default class Main extends Component {
   render() {
     const { todos } = this.props
 
-    const todoNodes = todos.map((todo, index) => (
+    const todoNodes = todos.map(todo => (
       <ListItem
-        key={index}
+        key={todo.id}
         primaryText={todo.text}
         rightIconButton={
           <IconButton

@@ -3,8 +3,8 @@ import Helmet from 'react-helmet'
 
 export default class Html extends Component {
   static propTypes = {
-    markup: PropTypes.string,
-    initialState: PropTypes.string,
+    markup: PropTypes.string.isRequired,
+    initialState: PropTypes.string.isRequired,
   };
   render() {
     const { markup, initialState } = this.props

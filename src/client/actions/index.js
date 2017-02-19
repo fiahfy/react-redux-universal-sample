@@ -22,6 +22,7 @@ export function fetchTodos() {
 
 export function createTodo(todo) {
   return (dispatch) => {
+    todo.id = (new Date()).getTime()
     dispatch({
       type: CREATE_TODO,
       todo,
