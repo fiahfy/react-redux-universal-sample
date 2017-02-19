@@ -44,9 +44,9 @@ export default async function (ctx) {
               <Root store={store} renderProps={renderProps} />
             )
 
-            ctx.body = '<!DOCTYPE html>' + ReactDOMServer.renderToStaticMarkup( // eslint-disable-line prefer-template
+            ctx.body = `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(
               <Html markup={markup} initialState={initialState} />
-            )
+            )}`
           } catch (e) {
             ctx.status = 500
             ctx.body = e.stack

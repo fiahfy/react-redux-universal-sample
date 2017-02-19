@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import { Router } from 'react-router'
 import { Provider } from 'react-redux'
+import { applyRouterMiddleware, Router } from 'react-router'
+import { useScroll } from 'react-router-scroll';
 import { ReduxAsyncConnect } from 'redux-connect'
 import { MuiThemeProvider } from 'material-ui'
-
-import DevTools from './dev-tools'
 import routes from '../routes'
 
 export default class Root extends Component {
@@ -16,25 +15,29 @@ export default class Root extends Component {
   render() {
     const { store, history, renderProps } = this.props
 
-    const hasDevTools = false
-    const devTools = hasDevTools ? <DevTools /> : null
+    let component
 
-    let component = (
-      <div>
-        <Router
-          render={props =>
-            <ReduxAsyncConnect {...props} filter={item => !item.deferred} />
-          } history={history}
-        >
-          {routes}
-        </Router>
-        {devTools}
-      </div>
-    )
     if (renderProps) {
       component = (
         <div>
           <ReduxAsyncConnect {...renderProps} />
+        </div>
+      )
+    } else {
+      let render = props => <ReduxAsyncConnect
+        {...props}
+        filter={item => !item.deferred}
+        render={applyRouterMiddleware(useScroll())}
+      />
+            
+      component = (
+        <div>
+          <Router
+            render={render}
+            history={history}
+          >
+            {routes}
+          </Router>
         </div>
       )
     }
