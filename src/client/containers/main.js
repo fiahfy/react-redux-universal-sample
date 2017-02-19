@@ -64,8 +64,8 @@ export default class Main extends Component {
           value={this.state.text}
           hintText="Input..."
           fullWidth
-          onChange={::this.hancleTextChange}
-          onKeyDown={::this.handleTextSubmit}
+          onChange={this.hancleTextChange.bind(this)}
+          onKeyDown={this.handleTextSubmit.bind(this)}
         />
         <List>
           {todoNodes}
