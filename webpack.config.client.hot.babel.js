@@ -1,14 +1,14 @@
 import webpack from 'webpack'
 import clientConfig from './webpack.config.client.babel'
 
-const [babelLoader] = clientConfig.module.loaders
-let newBabelLoader = babelLoader
-newBabelLoader = {
-  ...babelLoader,
-  query: {
-    ...babelLoader.query,
+const [babelRule] = clientConfig.module.rules
+let newbabelRule = babelRule
+newbabelRule = {
+  ...babelRule,
+  options: {
+    ...babelRule.options,
     presets: [
-      ...babelLoader.query.presets,
+      ...babelRule.options.presets,
       'react-hmre',
     ],
   },
@@ -25,8 +25,8 @@ export default {
   ],
   module: {
     ...clientConfig.module,
-    loaders: [
-      newBabelLoader,
+    rules: [
+      newbabelRule,
     ],
   },
   devServer: {

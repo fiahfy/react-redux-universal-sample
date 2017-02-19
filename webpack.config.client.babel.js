@@ -4,7 +4,7 @@ const config = {
   target: 'web',
   entry: './src/client.js',
   output: {
-    path: './public/assets/',
+    path: __dirname + '/public/assets/',
     publicPath: '/assets/',
     filename: 'js/bundle.js',
   },

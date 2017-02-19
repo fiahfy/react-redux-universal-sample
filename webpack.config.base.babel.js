@@ -1,13 +1,12 @@
 export default {
-  debug: true,
   devtool: 'cheap-source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
+        loader: 'babel-loader',
+        options: {
           plugins: ['transform-decorators-legacy'],
           presets: ['es2015', 'stage-0', 'react'],
         },

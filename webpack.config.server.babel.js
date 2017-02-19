@@ -8,7 +8,7 @@ const config = {
   target: 'node',
   entry: './src/server.js',
   output: {
-    path: './public/assets/',
+    path: __dirname + '/public/assets/',
     publicPath: '/assets/',
     filename: '../../bundle.js',
     libraryTarget: 'commonjs2',
