@@ -1,5 +1,5 @@
-import webpack from 'webpack'
-import config from './webpack.config.server.babel'
+import webpack from 'webpack';
+import config from './webpack.config.server.babel';
 
 export default {
   ...config,
@@ -10,4 +10,4 @@ export default {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
   ],
-}
+};

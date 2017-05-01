@@ -1,5 +1,5 @@
-import webpack from 'webpack'
-import config from './webpack.config.client.babel'
+import webpack from 'webpack';
+import config from './webpack.config.client.babel';
 
 export default {
   ...config,
@@ -25,4 +25,4 @@ export default {
       secure: false,
     }],
   },
-}
+};
