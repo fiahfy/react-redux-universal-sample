@@ -1,13 +1,13 @@
-import fetch from 'isomorphic-fetch'
-import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment'
+import fetch from 'isomorphic-fetch';
+import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 
-export const RECEIVE_TODOS = 'RECEIVE_TODOS'
-export const CREATE_TODO = 'CREATE_TODO'
-export const DELETE_TODO = 'DELETE_TODO'
+export const RECEIVE_TODOS = 'RECEIVE_TODOS';
+export const CREATE_TODO = 'CREATE_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
 
-let apiBaseURL = ''
+let apiBaseURL = '';
 if (!ExecutionEnvironment.canUseDOM) {
-  apiBaseURL = 'http://localhost:3000'
+  apiBaseURL = 'http://localhost:3000';
 }
 
 export function fetchTodos() {
@@ -17,16 +17,17 @@ export function fetchTodos() {
       .then(json => dispatch({
         type: RECEIVE_TODOS,
         todos: json,
-      }))
+      }));
 }
 
 export function createTodo(todo) {
   return (dispatch) => {
-    todo.id = (new Date()).getTime()
+    const newTodo = Object.assign({}, todo);
+    newTodo.id = (new Date()).getTime();
     dispatch({
       type: CREATE_TODO,
-      todo,
-    })
+      todo: newTodo,
+    });
     return fetch(`${apiBaseURL}/api/todos/`, {
       method: 'POST',
       headers: {
@@ -40,8 +41,8 @@ export function createTodo(todo) {
       .then(json => dispatch({
         type: RECEIVE_TODOS,
         todos: json,
-      }))
-  }
+      }));
+  };
 }
 
 export function deleteTodo(todo) {
@@ -49,7 +50,7 @@ export function deleteTodo(todo) {
     dispatch({
       type: DELETE_TODO,
       todo,
-    })
+    });
     return fetch(`${apiBaseURL}/api/todos/${todo.id}/`, {
       method: 'DELETE',
     })
@@ -58,6 +59,6 @@ export function deleteTodo(todo) {
       .then(json => dispatch({
         type: RECEIVE_TODOS,
         todos: json,
-      }))
-  }
+      }));
+  };
 }

@@ -1,17 +1,17 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { asyncConnect } from 'redux-connect'
-import { List, ListItem, TextField, IconButton } from 'material-ui'
-import { NavigationClose } from 'material-ui/svg-icons'
-import * as ActionCreators from '../actions'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { asyncConnect } from 'redux-connect';
+import { List, ListItem, TextField, IconButton } from 'material-ui';
+import { NavigationClose } from 'material-ui/svg-icons';
+import * as ActionCreators from '../actions';
 
 function mapStateToProps(state) {
-  return { todos: state.todos }
+  return { todos: state.todos };
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(ActionCreators, dispatch) }
+  return { ...bindActionCreators(ActionCreators, dispatch) };
 }
 
 @asyncConnect([{
@@ -22,26 +22,27 @@ function mapDispatchToProps(dispatch) {
 export default class Main extends Component {
   static propTypes = {
     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    actions: PropTypes.object.isRequired,
+    createTodo: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
   };
   state = {
     text: '',
   };
   hancleTextChange(e) {
-    this.setState({ text: e.target.value })
+    this.setState({ text: e.target.value });
   }
   handleTextSubmit(e) {
     if (e.keyCode !== 13 || !e.target.value) {
-      return
+      return;
     }
-    this.props.actions.createTodo({ text: e.target.value })
-    this.setState({ text: '' })
+    this.props.createTodo({ text: e.target.value });
+    this.setState({ text: '' });
   }
   handleDeleteClick(id) {
-    this.props.actions.deleteTodo({ id })
+    this.props.deleteTodo({ id });
   }
   render() {
-    const { todos } = this.props
+    const { todos } = this.props;
 
     const todoNodes = todos.map(todo => (
       <ListItem
@@ -55,7 +56,7 @@ export default class Main extends Component {
           </IconButton>
         }
       />
-    ))
+    ));
 
     return (
       <div>
@@ -64,13 +65,13 @@ export default class Main extends Component {
           value={this.state.text}
           hintText="Input..."
           fullWidth
-          onChange={this.hancleTextChange.bind(this)}
-          onKeyDown={this.handleTextSubmit.bind(this)}
+          onChange={(e) => this.hancleTextChange(e)}
+          onKeyDown={(e) => this.handleTextSubmit(e)}
         />
         <List>
           {todoNodes}
         </List>
       </div>
-    )
+    );
   }
 }
