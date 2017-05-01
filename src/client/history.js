@@ -1,11 +1,10 @@
-import { browserHistory, createMemoryHistory } from 'react-router'
-import withScroll from 'scroll-behavior'
-import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment'
+import { browserHistory, createMemoryHistory } from 'react-router';
+import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 
 function createHistory() {
   return ExecutionEnvironment.canUseDOM
-    ? withScroll(browserHistory)
-    : createMemoryHistory()
+    ? browserHistory
+    : createMemoryHistory();
 }
 
-export default createHistory()
+export default createHistory();

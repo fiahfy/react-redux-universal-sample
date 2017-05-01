@@ -1,34 +1,20 @@
 import webpack from 'webpack'
 import clientConfig from './webpack.config.client.babel'
 
-const [babelLoader] = clientConfig.module.loaders
-let newBabelLoader = babelLoader
-newBabelLoader = {
-  ...babelLoader,
-  query: {
-    ...babelLoader.query,
-    presets: [
-      ...babelLoader.query.presets,
-      'react-hmre',
-    ],
-  },
-}
-
 export default {
   ...clientConfig,
+  entry: [
+    'react-hot-loader/patch',
+    clientConfig.entry,
+  ],
   output: {
     ...clientConfig.output,
     publicPath: 'http://localhost:8080/assets/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
   ],
-  module: {
-    ...clientConfig.module,
-    loaders: [
-      newBabelLoader,
-    ],
-  },
   devServer: {
     port: 8080,
     inline: true,

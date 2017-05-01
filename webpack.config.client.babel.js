@@ -2,9 +2,9 @@ import baseConfig from './webpack.config.base.babel'
 
 const config = {
   target: 'web',
-  entry: './src/client.js',
+  entry: './client.js',
   output: {
-    path: './public/assets/',
+    path: __dirname + '/public/assets/',
     publicPath: '/assets/',
     filename: 'js/bundle.js',
   },

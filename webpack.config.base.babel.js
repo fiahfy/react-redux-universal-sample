@@ -1,17 +1,16 @@
 export default {
-  debug: true,
-  devtool: 'cheap-source-map',
+  devtool: 'inline-source-map',
+  context: __dirname + '/src',
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
+        use: ['babel-loader'],
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          plugins: ['transform-decorators-legacy'],
-          presets: ['es2015', 'stage-0', 'react'],
-        },
       },
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  }
 }

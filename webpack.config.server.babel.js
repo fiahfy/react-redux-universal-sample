@@ -6,9 +6,9 @@ const nodeModules = fs.readdirSync('node_modules')
 
 const config = {
   target: 'node',
-  entry: './src/server.js',
+  entry: './server.js',
   output: {
-    path: './public/assets/',
+    path: __dirname + '/public/assets/',
     publicPath: '/assets/',
     filename: '../../bundle.js',
     libraryTarget: 'commonjs2',

@@ -1,26 +1,41 @@
-import 'babel-polyfill'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { syncHistoryWithStore } from 'react-router-redux'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-import Root from './client/containers/root'
-import configureStore from './client/store'
-import baseHistory from './client/history'
+import 'babel-polyfill';
+import React from 'react';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import { syncHistoryWithStore } from 'react-router-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Root from './client/containers/root';
+import configureStore from './client/store';
+import baseHistory from './client/history';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin()
+injectTapEventPlugin();
 
-let initialState
+let initialState;
 try {
-  initialState = window.__initialState // eslint-disable-line no-undef, no-underscore-dangle
+  initialState = window.__initialState; // eslint-disable-line no-undef, no-underscore-dangle
 } catch (e) {
-  initialState = {}
+  initialState = {};
 }
-const store = configureStore(baseHistory, initialState)
-const history = syncHistoryWithStore(baseHistory, store)
+const store = configureStore(baseHistory, initialState);
+const history = syncHistoryWithStore(baseHistory, store);
 
-ReactDOM.render(
-  <Root store={store} history={history} />,
-  document.querySelector('#app') // eslint-disable-line no-undef
-)
+/* eslint-disable react/jsx-filename-extension, no-undef */
+function renderApp(RootComponent) {
+  render(
+    <AppContainer>
+      <RootComponent store={store} history={history} />
+    </AppContainer>,
+    document.querySelector('#app'),
+  );
+}
+/* eslint-enable react/jsx-filename-extension, no-undef */
+
+renderApp(Root);
+if (module.hot) {
+  module.hot.accept('./client/containers/root', () => {
+    const nextRoot = require('./client/containers/root').default // eslint-disable-line
+    renderApp(nextRoot);
+  });
+}
