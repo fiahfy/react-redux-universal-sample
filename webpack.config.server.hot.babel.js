@@ -1,13 +1,13 @@
 import webpack from 'webpack'
-import serverConfig from './webpack.config.server.babel'
+import config from './webpack.config.server.babel'
 
-const config = {
-  entry: [serverConfig.entry].concat([
+export default {
+  ...config,
+  entry: [
     'webpack/hot/poll?1000',
-  ]),
-  plugins: [].concat([
+    config.entry,
+  ],
+  plugins: [
     new webpack.HotModuleReplacementPlugin(),
-  ]),
+  ],
 }
-
-export default Object.assign({}, serverConfig, config)

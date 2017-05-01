@@ -1,6 +1,7 @@
-import baseConfig from './webpack.config.base.babel'
+import config from './webpack.config.base.babel'
 
-const config = {
+export default {
+  ...config,
   target: 'web',
   entry: './client.js',
   output: {
@@ -9,5 +10,3 @@ const config = {
     filename: 'js/bundle.js',
   },
 }
-
-export default Object.assign({}, baseConfig, config)

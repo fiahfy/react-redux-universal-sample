@@ -1,10 +1,11 @@
 import fs from 'fs'
-import baseConfig from './webpack.config.base.babel'
+import config from './webpack.config.base.babel'
 
 const nodeModules = fs.readdirSync('node_modules')
   .filter(dir => dir !== '.bin')
 
-const config = {
+export default {
+  ...config,
   target: 'node',
   entry: './server.js',
   output: {
@@ -15,5 +16,3 @@ const config = {
   },
   externals: nodeModules,
 }
-
-export default Object.assign({}, baseConfig, config)
