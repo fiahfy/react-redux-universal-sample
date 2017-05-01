@@ -5,7 +5,6 @@ import Helmet from 'react-helmet';
 const Html = ({ markup, initialState }) => {
   const head = Helmet.rewind();
 
-  /* eslint-disable react/no-danger */
   return (
     <html lang="en">
       <head>
@@ -20,11 +19,10 @@ const Html = ({ markup, initialState }) => {
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: markup }} />
-        <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${initialState}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `window.__initialState=${initialState}` }} /> // eslint-disable-line react/no-danger
       </body>
     </html>
   );
-  /* eslint-enable react/no-danger */
 };
 
 Html.propTypes = {

@@ -35,7 +35,7 @@ export default function configureStore(history, initialState = {}) {
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default // eslint-disable-line
+      const nextRootReducer = require('./reducers').default; // eslint-disable-line global-require
       store.replaceReducer(nextRootReducer);
     });
   }

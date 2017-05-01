@@ -9,7 +9,7 @@ import configureStore from './client/store';
 import baseHistory from './client/history';
 
 // Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
+// @see http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
 let initialState;
@@ -21,21 +21,21 @@ try {
 const store = configureStore(baseHistory, initialState);
 const history = syncHistoryWithStore(baseHistory, store);
 
-/* eslint-disable react/jsx-filename-extension, no-undef */
 function renderApp(RootComponent) {
   render(
+    /* eslint-disable react/jsx-filename-extension */
     <AppContainer>
       <RootComponent store={store} history={history} />
     </AppContainer>,
-    document.querySelector('#app'),
+    /* eslint-enable react/jsx-filename-extension */
+    document.querySelector('#app'), // eslint-disable-line no-undef
   );
 }
-/* eslint-enable react/jsx-filename-extension, no-undef */
 
 renderApp(Root);
 if (module.hot) {
   module.hot.accept('./client/containers/root', () => {
-    const nextRoot = require('./client/containers/root').default // eslint-disable-line
+    const nextRoot = require('./client/containers/root').default; // eslint-disable-line global-require
     renderApp(nextRoot);
   });
 }
