@@ -35,12 +35,17 @@ export default class Root extends Component {
         render={applyRouterMiddleware(useScroll())}
       />;
 
+      // @see https://github.com/ReactTraining/react-router/issues/2704#issuecomment-261310093
+      if (!this.routes) {
+        this.routes = routes;
+      }
+
       component = (
         <div>
           <Router
             render={render}
             history={history}
-            routes={routes}
+            routes={this.routes}
           />
         </div>
       );

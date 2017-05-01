@@ -1,34 +1,20 @@
 import webpack from 'webpack'
 import clientConfig from './webpack.config.client.babel'
 
-const [babelRule] = clientConfig.module.rules
-let newbabelRule = babelRule
-newbabelRule = {
-  ...babelRule,
-  options: {
-    ...babelRule.options,
-    presets: [
-      ...babelRule.options.presets,
-      'react-hmre',
-    ],
-  },
-}
-
 export default {
   ...clientConfig,
+  entry: [
+    'react-hot-loader/patch',
+    clientConfig.entry,
+  ],
   output: {
     ...clientConfig.output,
     publicPath: 'http://localhost:8080/assets/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
   ],
-  module: {
-    ...clientConfig.module,
-    rules: [
-      newbabelRule,
-    ],
-  },
   devServer: {
     port: 8080,
     inline: true,
