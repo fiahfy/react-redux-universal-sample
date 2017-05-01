@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import ExecutionEnvironment from 'fbjs/lib/ExecutionEnvironment';
 import reducers from './reducers';
 import DevTools from './containers/dev-tools';
