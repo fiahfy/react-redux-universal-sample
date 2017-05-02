@@ -1,5 +1,5 @@
 export default {
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   context: `${__dirname}/src`,
   module: {
     rules: [

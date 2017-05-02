@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
-import { List, ListItem, TextField, IconButton } from 'material-ui';
-import { NavigationClose } from 'material-ui/svg-icons';
 import * as ActionCreators from '../actions';
+import TodoField from '../components/todo-field';
+import TodoList from '../components/todo-list';
 
 function mapStateToProps(state) {
   return { todos: state.todos };
@@ -26,52 +26,18 @@ export default class Main extends Component {
     createTodo: PropTypes.func.isRequired,
     deleteTodo: PropTypes.func.isRequired,
   };
-  state = {
-    text: '',
-  };
-  hancleTextChange(e) {
-    this.setState({ text: e.target.value });
-  }
-  handleTextSubmit(e) {
-    if (e.keyCode !== 13 || !e.target.value) {
-      return;
-    }
-    this.props.createTodo({ text: e.target.value });
-    this.setState({ text: '' });
-  }
-  handleDeleteClick(id) {
+  handleTodoDelete(id) {
     this.props.deleteTodo({ id });
+  }
+  handleTodoSubmit(text) {
+    this.props.createTodo({ text });
   }
   render() {
     const { todos } = this.props;
-
-    const todoNodes = todos.map(todo => (
-      <ListItem
-        key={todo.id}
-        primaryText={todo.text}
-        rightIconButton={
-          <IconButton
-            onClick={() => this.handleDeleteClick(todo.id)}
-          >
-            <NavigationClose />
-          </IconButton>
-        }
-      />
-    ));
-
     return (
       <div>
-        <TextField
-          id="todo"
-          value={this.state.text}
-          hintText="Input..."
-          fullWidth
-          onChange={(e) => this.hancleTextChange(e)}
-          onKeyDown={(e) => this.handleTextSubmit(e)}
-        />
-        <List>
-          {todoNodes}
-        </List>
+        <TodoField onSubmit={text => this.handleTodoSubmit(text)} />
+        <TodoList todos={todos} onClickDeleteButton={id => this.handleTodoDelete(id)} />
       </div>
     );
   }

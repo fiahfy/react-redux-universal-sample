@@ -16,16 +16,19 @@ export default function (ctx) {
       ctx.body = { id };
       break;
     }
-    case 'PUT':
+    case 'PUT': {
+      const id = +ctx.params.id;
       global.todos = global.todos.map((todo) => {
-        const newTodo = Object.assign({}, todo);
-        if (newTodo.id === ctx.params.id) {
+        if (todo.id === id) {
+          const newTodo = Object.assign({}, todo);
           newTodo.text = ctx.request.body.text;
+          return newTodo;
         }
-        return newTodo;
+        return todo;
       });
       ctx.status = 204;
       break;
+    }
     case 'DELETE': {
       const id = +ctx.params.id;
       global.todos = global.todos.filter(todo => todo.id !== id);

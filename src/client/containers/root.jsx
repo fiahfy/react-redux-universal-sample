@@ -16,6 +16,7 @@ export default class Root extends Component {
   };
   /* eslint-enable react/forbid-prop-types */
   static defaultProps = {
+    history: null,
     renderProps: null,
   }
   render() {

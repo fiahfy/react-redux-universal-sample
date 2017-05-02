@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-universal-sample",
+  "name": "react-redux-universal-todo",
   "version": "1.0.0",
   "description": "",
   "author": {
@@ -10,7 +10,7 @@
   "homepage": "http://fiahfy.blogspot.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fiahfy/react-redux-universal-sample"
+    "url": "https://github.com/fiahfy/react-redux-universal-todo"
   },
   "license": "MIT",
   "main": "bundle.js",
