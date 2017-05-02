@@ -11,7 +11,7 @@ export default {
   output: {
     path: `${__dirname}/public/assets/`,
     publicPath: '/assets/',
-    filename: '../../bundle.js',
+    filename: '../../server.js',
     libraryTarget: 'commonjs2',
   },
   externals: nodeModules,
