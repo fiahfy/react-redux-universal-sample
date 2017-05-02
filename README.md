@@ -21,7 +21,7 @@ $ yarn
 
 ## Run server
 ```
-$ yarn run start
+$ yarn start
 ```
 
 ## Run server (HMR)
