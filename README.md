@@ -1,5 +1,5 @@
 # react-redux-universal-todo
-[![Build Status](https://travis-ci.org/fiahfy/react-redux-universal-todo.svg?branch=master)](https://travis-ci.org/fiahfy/react-redux-universal-sample)
+[![Build Status](https://travis-ci.org/fiahfy/react-redux-universal-todo.svg?branch=master)](https://travis-ci.org/fiahfy/react-redux-universal-todo)
 
 Universal Todo Sample with React.js and Redux  
 Inspire <https://github.com/erikras/react-redux-universal-hot-example>
