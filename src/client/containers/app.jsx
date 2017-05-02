@@ -5,7 +5,7 @@ import { AppBar } from 'material-ui';
 const App = ({ children }) => (
   <div>
     <AppBar
-      title="React Redux Universal Sample"
+      title="Todo Sample"
       showMenuIconButton={false}
     />
     {children}

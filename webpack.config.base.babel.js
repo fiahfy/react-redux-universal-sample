@@ -1,6 +1,6 @@
 export default {
-  devtool: 'inline-source-map',
-  context: __dirname + '/src',
+  devtool: 'eval',
+  context: `${__dirname}/src`,
   module: {
     rules: [
       {
@@ -12,5 +12,5 @@ export default {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-  }
-}
+  },
+};

@@ -36,11 +36,10 @@ export default async function (ctx) {
           return;
         }
 
-        /* eslint-disable react/jsx-filename-extension */
         loadOnServer({ ...renderProps, store }).then(() => {
           try {
             const initialState = serialize(store.getState());
-
+            /* eslint-disable react/jsx-filename-extension */
             const markup = ReactDOMServer.renderToString(
               <Root store={store} renderProps={renderProps} />,
             );
@@ -48,6 +47,7 @@ export default async function (ctx) {
             ctx.body = `<!DOCTYPE html>${ReactDOMServer.renderToStaticMarkup(
               <Html markup={markup} initialState={initialState} />,
             )}`;
+            /* eslint-enable react/jsx-filename-extension */
           } catch (e) {
             ctx.status = 500;
             ctx.body = e.stack;
@@ -55,7 +55,6 @@ export default async function (ctx) {
           }
           resolve();
         });
-        /* eslint-enable react/jsx-filename-extension */
       },
     );
   });

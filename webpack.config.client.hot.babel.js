@@ -1,14 +1,14 @@
-import webpack from 'webpack'
-import clientConfig from './webpack.config.client.babel'
+import webpack from 'webpack';
+import config from './webpack.config.client.babel';
 
 export default {
-  ...clientConfig,
+  ...config,
   entry: [
     'react-hot-loader/patch',
-    clientConfig.entry,
+    config.entry,
   ],
   output: {
-    ...clientConfig.output,
+    ...config.output,
     publicPath: 'http://localhost:8080/assets/',
   },
   plugins: [
@@ -25,23 +25,4 @@ export default {
       secure: false,
     }],
   },
-}
-
-// const config = {
-//   entry: [clientConfig.entry].concat([
-//     'webpack-dev-server/client?http://localhost:8080',
-//     'webpack/hot/dev-server'
-//   ]),
-//   plugins: [].concat([
-//     new webpack.HotModuleReplacementPlugin()
-//   ]),
-//   devServer: {
-//     proxy: [{
-//       path: '/',
-//       target: 'http://localhost:3000',
-//       secure: false
-//     }]
-//   }
-// }
-//
-// export default Object.assign({}, clientConfig, config)
+};
