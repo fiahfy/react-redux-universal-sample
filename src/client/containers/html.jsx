@@ -16,7 +16,7 @@ const Html = ({ markup, initialState }) => {
         {head.script.toComponent()}
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1" />
-        <script src="/assets/js/bundle.js" defer />
+        <script src="/assets/js/client.js" defer />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: markup }} />

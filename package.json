@@ -13,14 +13,14 @@
     "url": "https://github.com/fiahfy/react-redux-universal-todo"
   },
   "license": "MIT",
-  "main": "bundle.js",
+  "main": "server.js",
   "scripts": {
     "install": "npm run build",
     "start": "npm run watch & npm run nodemon",
     "start:hot": "npm run hot:client & npm run hot:server",
-    "nodemon": "nodemon -V -w bundle.js bundle.js",
+    "nodemon": "nodemon -V -w server.js server.js",
     "hot:client": "webpack-dev-server --config webpack.config.client.hot.babel.js",
-    "hot:server": "webpack -w --config webpack.config.server.hot.babel.js & node bundle.js",
+    "hot:server": "webpack -w --config webpack.config.server.hot.babel.js & node server.js",
     "watch": "npm run build -- -w",
     "watch:client": "npm run build:client -- -w",
     "watch:server": "npm run build:server -- -w",

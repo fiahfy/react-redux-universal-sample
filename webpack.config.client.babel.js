@@ -7,6 +7,6 @@ export default {
   output: {
     path: `${__dirname}/public/assets/`,
     publicPath: '/assets/',
-    filename: 'js/bundle.js',
+    filename: 'js/client.js',
   },
 };

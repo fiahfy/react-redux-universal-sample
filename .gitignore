@@ -35,5 +35,5 @@ node_modules
 
 #
 public/assets/*.js*
-bundle.js*
+server.js*
 !.gitkeep
