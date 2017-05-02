@@ -35,5 +35,5 @@ node_modules
 
 #
 public/assets/*.js*
-server.js*
+/server.js*
 !.gitkeep
